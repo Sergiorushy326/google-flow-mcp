@@ -18,6 +18,12 @@ updates:
       # against zod 3. Bump deliberately, not automatically.
       - dependency-name: zod
         update-types: ["version-update:semver-major"]
+      # @types/node must not run ahead of the oldest Node we claim to support
+      # (engines: >=20). Newer types would silently accept APIs that do not
+      # exist on Node 20, and CI would not catch it. Raise this only together
+      # with the engines field.
+      - dependency-name: "@types/node"
+        update-types: ["version-update:semver-major"]
 
   - package-ecosystem: github-actions
     directory: "/"
