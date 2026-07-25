@@ -1,0 +1,60 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  build:
+    name: Build & test (Node ${{ matrix.node }})
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        node: [20, 22]
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: ${{ matrix.node }}
+          cache: npm
+
+      - run: npm ci
+
+      - name: Typecheck
+        run: npm run typecheck
+
+      - name: Lint
+        run: npm run lint
+
+      - name: Format check
+        run: npm run format:check
+
+      - name: Unit tests
+        run: npm test
+
+      - name: Build
+        run: npm run build
+
+      # The server is useless if its tool surface fails to load, and that is
+      # checkable without a browser or a Google account.
+      - name: Verify MCP tool surface loads
+        run: |
+          npx -y @modelcontextprotocol/inspector --cli node dist/index.js --method tools/list > tools.json
+          COUNT=$(node -e "console.log(JSON.parse(require('fs').readFileSync('tools.json','utf8')).tools.length)")
+          echo "Tools exposed: $COUNT"
+          test "$COUNT" -ge 20
+
+      - name: Verify MCP resource surface loads
+        run: npx -y @modelcontextprotocol/inspector --cli node dist/index.js --method resources/list

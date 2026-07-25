@@ -1,0 +1,37 @@
+name: Feature request
+description: Suggest a Flow capability to cover
+labels: ["enhancement"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Check the [Feature coverage](../../#feature-coverage) table first — some gaps are
+        deliberate (Scenebuilder `Extend`, driving Tools-app forms) because covering them
+        would let the server charge without a quote.
+
+  - type: textarea
+    id: capability
+    attributes:
+      label: What Flow capability should be covered
+    validations:
+      required: true
+
+  - type: textarea
+    id: use-case
+    attributes:
+      label: What are you trying to do
+      description: The workflow, not just the feature. It often changes the right design.
+    validations:
+      required: true
+
+  - type: dropdown
+    id: cost
+    attributes:
+      label: Does this capability cost credits in Flow?
+      options:
+        - "No, it is free"
+        - "Yes, and Flow quotes it in an approval card"
+        - "Yes, but Flow does NOT quote it"
+        - "Not sure"
+    validations:
+      required: true

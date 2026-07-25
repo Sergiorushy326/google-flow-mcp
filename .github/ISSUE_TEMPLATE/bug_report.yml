@@ -1,0 +1,87 @@
+name: Bug report
+description: Something in the server behaves incorrectly
+labels: ["bug"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for the report. If this involves an **unexpected credit charge**, please
+        say so in the title — those are triaged first.
+
+  - type: textarea
+    id: what-happened
+    attributes:
+      label: What happened
+      description: What did you expect, and what did you get instead?
+    validations:
+      required: true
+
+  - type: input
+    id: tool
+    attributes:
+      label: Which tool
+      placeholder: e.g. flow_generate_video
+    validations:
+      required: true
+
+  - type: textarea
+    id: repro
+    attributes:
+      label: Steps to reproduce
+      description: Include the tool arguments you used, with prompts redacted if you prefer.
+    validations:
+      required: true
+
+  - type: textarea
+    id: error
+    attributes:
+      label: Error output
+      description: The full error text. These errors include a "Next step" line — please keep it.
+      render: text
+
+  - type: dropdown
+    id: charged
+    attributes:
+      label: Were credits charged?
+      options:
+        - "No"
+        - "Yes — unexpectedly"
+        - "Yes — expected"
+        - "Not sure"
+    validations:
+      required: true
+
+  - type: textarea
+    id: ledger
+    attributes:
+      label: Relevant flow_ledger output
+      description: Optional, but the fastest way to diagnose anything cost-related. Redact prompts freely.
+      render: text
+
+  - type: input
+    id: version
+    attributes:
+      label: Version / commit
+      placeholder: v0.1.0 or a commit SHA
+    validations:
+      required: true
+
+  - type: input
+    id: env
+    attributes:
+      label: OS, Node version, Chrome version
+      placeholder: macOS 15.6, Node 22.23, Chrome 141
+    validations:
+      required: true
+
+  - type: dropdown
+    id: calibrated
+    attributes:
+      label: Did flow_check_session pass before this?
+      description: A stale session or a disabled confirm gate explains a large share of failures.
+      options:
+        - "Yes, everything reported healthy"
+        - "No, it reported a problem"
+        - "I did not run it"
+    validations:
+      required: true

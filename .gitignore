@@ -1,0 +1,11 @@
+node_modules/
+dist/
+*.log
+.DS_Store
+.env
+.env.local
+
+# Runtime state — contains this machine's spend ledger and learned endpoint map
+.google-flow-mcp/
+chrome-profile/
+flow-output/

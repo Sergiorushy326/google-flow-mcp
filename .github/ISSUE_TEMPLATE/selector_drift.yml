@@ -1,0 +1,43 @@
+name: Selector drift
+description: Google changed Flow's UI and a control can no longer be found
+labels: ["selector-drift"]
+title: "Selector drift: "
+body:
+  - type: markdown
+    attributes:
+      value: |
+        This is expected maintenance, not a defect — Flow's markup changes without notice.
+        These reports are genuinely valuable, and fixes are usually small.
+
+        **If a tool refused and told you nothing was charged, that is the design working.**
+
+  - type: input
+    id: control
+    attributes:
+      label: Which control could not be found
+      placeholder: e.g. Approve button, settings gear, media picker
+    validations:
+      required: true
+
+  - type: textarea
+    id: error
+    attributes:
+      label: The error message
+      render: text
+    validations:
+      required: true
+
+  - type: textarea
+    id: markup
+    attributes:
+      label: Current markup, if you have it
+      description: The element's outerHTML or its visible text, from DevTools. This is what makes a fix fast.
+      render: html
+
+  - type: input
+    id: date
+    attributes:
+      label: Date observed
+      placeholder: 2026-08-01
+    validations:
+      required: true
